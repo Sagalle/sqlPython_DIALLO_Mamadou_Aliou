@@ -97,9 +97,11 @@ def choices():
         for key in range(1,len(requeteDict) + 1):
                 k = str(key)
                 if k == c:
-                
                     historiqueDict[c] = requeteDict[c]
                     del requeteDict[c]
                     requeteFonction(c)
                     Menu()
+                    choices()
+                else:
+                    print("Votre choix est incorrect Veuillez en faire un autre........")
                     choices()
