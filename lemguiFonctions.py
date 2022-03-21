@@ -54,36 +54,44 @@ params ={
     "database": "DB_LemGUI"
 }
 
+def fetchFonction(x):
+    with ms.connect(**params) as db:
+        with db.cursor() as c:
+            c.execute(x,)
+            result = c.fetchall()
+            for elm in range(len(result)):
+                print(result[elm])
+
 def requete1():
     query = f"select adresse_AGENCE from AGENCE"
-    with ms.connect(**params) as db:
-        with db.cursor() as c:
-            c.execute(query,)
-            result = c.fetchall()
-            print("La liste des agences")
-            for ag in range(len(result)):
-                return result[ag]
-                
+    fetchFonction(query)
+    
 def requete2():
-    users = []
-    query = f"select nom_USER from USERS"
-    with ms.connect(**params) as db:
-        with db.cursor() as c:
-            c.execute(query,)
-            result = c.fetchall()
-            for ag in range(len(result)):
-                users.append(result[ag][0])
-            users.sort()
-            print("La liste des caissiers:")
-            for caissier in users:
-               print(caissier) 
-               
-               
+    query = f"select nom_USER from USERS order by nom_USER"
+    fetchFonction(query) 
+
+def requete3():
+    query = f"select nom_USER,libelle_PROFIL,adresse_AGENCE  from USERS,PROFIL,AGENCE where id_USER_USER = id_USER and id_PROFIL = id_PROFIL_PROFIL and libelle_PROFIL ='chef agence'"
+    fetchFonction(query)
+              
+def requete4():
+    query = f"select numero,solde_COMPTE_TRANSACTION,adresse_AGENCE from COMPTE_TRANSACTION,AGENCE,USERS where id_USER = numero_AGENCE and adresse_AGENCE = '5 Nova Road'order by solde_COMPTE_TRANSACTION"
+    fetchFonction(query)
+  
+"""5) Lister la somme des montants déposés par un caissier 
+dans un compte de transactionde l’agence dont le chef est moussa dop 
+par ordre croissant du montant"""
+def requete5():
+    query = f"select "
+    fetchFonction(query)
+    
 #***************** Fonction contenant les requetes SQL *******************************
 def requeteFonction(x):
     requeteDicts ={
         "1": requete1(),
-        "2": requete2()
+        "2": requete2(),
+        "3": requete3(),
+        "4": requete4
     }
     requeteDicts[x]
     
