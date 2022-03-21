@@ -25,8 +25,8 @@ requeteDict ={
     "21": "21) Lister le ou les clients qui ont effectué le dépôt le plus petit durant le mois de MAI 2021",
     "22": "22) Lister le ou les clients qui ont effectué le plus de dépôt durant le mois de MAI 221",
     "23": "23) Lister les 5 agences qui ont effectué le plus de transactions durant l’année 2021",
-    "24": "24) Historique",
-    "25": "25) Quitter"
+    "e": "E) Historique",
+    "q": "Q) Quitter"
 }
 
 
@@ -39,6 +39,7 @@ def Menu():
 historiqueDict ={}  
 def historiqueMenu():
     print("==============HISTORIQUE DES CHOIX==================")
+    
     for hkey in historiqueDict.keys():
         print(historiqueDict[hkey])
     
@@ -87,13 +88,16 @@ def historiquechoices():
   
 def choices():
     c = input("Faites un choix: ")
-    for key in range(1,len(requeteDict) + 1):
-            k = str(key)
-            if k == c:
-                if c == "24":
-                    historiqueMenu()
-                    historiquechoices()
-                else:
+    if c == "e":
+        historiqueMenu()
+        historiquechoices()
+    elif c == "q":
+        print("AU REVOIR !!!!!!!!!!!!!!!")
+    else:
+        for key in range(1,len(requeteDict) + 1):
+                k = str(key)
+                if k == c:
+                
                     historiqueDict[c] = requeteDict[c]
                     del requeteDict[c]
                     requeteFonction(c)
