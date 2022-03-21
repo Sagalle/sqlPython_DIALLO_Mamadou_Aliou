@@ -98,5 +98,4 @@ def choices():
                     del requeteDict[c]
                     requeteFonction(c)
                     Menu()
-                    historiqueMenu()
                     choices()
